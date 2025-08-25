@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nishit Thapa - Filmmaker Portfolio</title>
+    <meta name="description" content="Nishit Thapa - Filmmaker from Kathmandu, Nepal. Director, Writer, Editor, Cinematographer showcasing original films and collaborative projects">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">Nishit Thapa</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#work" class="nav-link">Work</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-video-background">
+            <iframe 
+                src="https://www.youtube.com/embed/8CX6OQip0GI?autoplay=1&mute=1&loop=1&playlist=8CX6OQip0GI&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&start=0&enablejsapi=1&vq=hd720"
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Nishit Thapa</h1>
+            <p class="hero-subtitle">Filmmaker</p>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Work/Portfolio Section -->
+    <section id="work" class="work-section">
+        <div class="container">
+            <h2 class="section-title">My Work</h2>
+            
+            <!-- Published Work -->
+            <div class="work-category">
+                <h3 class="category-title">Published Work</h3>
+                
+                <!-- Filter buttons -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="director">Writing & Directing</button>
+                    <button class="filter-btn" data-filter="editor">Editing</button>
+                    <button class="filter-btn" data-filter="cinematographer">Cinematography</button>
+                </div>
+
+                <!-- Published Portfolio Grid -->
+                <div class="portfolio-grid published-work">
+                <!-- Cancer (2025) -->
+                <div class="portfolio-item" data-category="editor" data-youtube="Hk3RUOGHYdA">
+                    <div class="portfolio-media">
+                        <img src="https://i.ytimg.com/vi/Hk3RUOGHYdA/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCWvPYggqzoeUEOlB8i83HT3AEkVw" alt="Cancer (2025)" class="portfolio-image">
+                        <div class="play-button">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Cancer</h3>
+                        <p>Dir. Swayam Aryal / Editor</p>
+                        <span class="year">2025</span>
+                    </div>
+                </div>
+
+                <!-- Bihani Ko Gham (2024) -->
+                <div class="portfolio-item" data-category="director editor cinematographer" data-youtube="z684g-EJ4-A">
+                    <div class="portfolio-media">
+                        <img src="https://img.youtube.com/vi/z684g-EJ4-A/maxresdefault.jpg" alt="Bihani Ko Gham" class="portfolio-image">
+                        <div class="play-button">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Bihani Ko Gham</h3>
+                        <p>Dir. Nishit Thapa / Writer, Director, Editor, Cinematographer</p>
+                        <span class="year">2024</span>
+                    </div>
+                </div>
+
+                <!-- My Dog Tales Episode 1 (2024) -->
+                <div class="portfolio-item" data-category="editor" data-youtube="PNsTVuPq6Ys">
+                    <div class="portfolio-media">
+                        <img src="https://img.youtube.com/vi/PNsTVuPq6Ys/maxresdefault.jpg" alt="My Dog Tales Episode 1" class="portfolio-image">
+                        <div class="play-button">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>My Dog Tales - Episode 1</h3>
+                        <p>Docuseries / Editor</p>
+                        <span class="year">2024</span>
+                    </div>
+                </div>
+
+                <!-- My Dog Tales Episode 4 (2024) -->
+                <div class="portfolio-item" data-category="editor" data-youtube="fMFsgGU3P68">
+                    <div class="portfolio-media">
+                        <img src="https://img.youtube.com/vi/fMFsgGU3P68/maxresdefault.jpg" alt="My Dog Tales Episode 4" class="portfolio-image">
+                        <div class="play-button">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>My Dog Tales - Episode 4</h3>
+                        <p>Docuseries / Editor</p>
+                        <span class="year">2024</span>
+                    </div>
+                </div>
+
+                <!-- Makhamali Udaan (2023) -->
+                <div class="portfolio-item" data-category="editor" data-youtube="y_yYUXGPWv8">
+                    <div class="portfolio-media">
+                        <img src="https://img.youtube.com/vi/y_yYUXGPWv8/maxresdefault.jpg" alt="Makhamali Udaan" class="portfolio-image">
+                        <div class="play-button">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Makhamali Udaan</h3>
+                        <p>Dir. Atin Shrestha / Editor</p>
+                        <span class="year">2023</span>
+                    </div>
+                </div>
+
+                <!-- MGSKS (2023) -->
+                <div class="portfolio-item" data-category="director editor cinematographer" data-youtube="8yBXVpLGZjQ">
+                    <div class="portfolio-media">
+                        <img src="https://img.youtube.com/vi/8yBXVpLGZjQ/maxresdefault.jpg" alt="MGSKS" class="portfolio-image">
+                        <div class="play-button">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>MGSKS</h3>
+                        <p>Dir. Nishit Thapa / Writer, Director, Editor, Cinematographer</p>
+                        <span class="year">2023</span>
+                    </div>
+                </div>
+
+                <!-- Rose of Winter (2022) -->
+                <div class="portfolio-item" data-category="director editor cinematographer" data-youtube="z0N2t4wWFGo">
+                    <div class="portfolio-media">
+                        <img src="https://img.youtube.com/vi/z0N2t4wWFGo/maxresdefault.jpg" alt="Rose of Winter" class="portfolio-image">
+                        <div class="play-button">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Rose of Winter</h3>
+                        <p>Dir. Nishit Thapa / Writer, Director, Editor, Cinematographer</p>
+                        <span class="year">2022</span>
+                    </div>
+                </div>
+
+                <!-- Goldfish (2022) -->
+                <div class="portfolio-item" data-category="cinematographer" data-youtube="w5cmORqDmE0">
+                    <div class="portfolio-media">
+                        <img src="https://img.youtube.com/vi/w5cmORqDmE0/maxresdefault.jpg" alt="Goldfish" class="portfolio-image">
+                        <div class="play-button">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Goldfish</h3>
+                        <p>Dir. Atin Shrestha / Director of Photography</p>
+                        <span class="year">2022</span>
+                    </div>
+                </div>
+
+                <!-- Asymptote (2022) -->
+                <div class="portfolio-item" data-category="director editor cinematographer" data-youtube="CaqRi2D95iU">
+                    <div class="portfolio-media">
+                        <img src="https://img.youtube.com/vi/CaqRi2D95iU/maxresdefault.jpg" alt="Asymptote" class="portfolio-image">
+                        <div class="play-button">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Asymptote</h3>
+                        <p>Dir. Nishit Thapa / Writer, Director, Editor, Cinematographer</p>
+                        <span class="year">2022</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Upcoming Work -->
+            <div class="work-category">
+                <h3 class="category-title">Upcoming Work</h3>
+                
+                <!-- Upcoming Portfolio Grid -->
+                <div class="portfolio-grid upcoming-work">
+                    <!-- Rudra (2025) -->
+                    <div class="portfolio-item" data-category="editor">
+                        <div class="portfolio-media">
+                            <img src="photos/upcoming movies/rudra.jpg" alt="Rudra (2025)" class="portfolio-image">
+                            <div class="play-button" style="opacity: 0.5;">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>Rudra</h3>
+                            <p>Dir. Swayam Aryal / Editor (Coming Soon)</p>
+                            <span class="year">2025</span>
+                        </div>
+                    </div>
+
+                    <!-- The Proposal (2025) -->
+                    <div class="portfolio-item" data-category="cinematographer">
+                        <div class="portfolio-media">
+                            <img src="photos/upcoming.jpg" alt="The Proposal (2025)" class="portfolio-image">
+                            <div class="play-button" style="opacity: 0.5;">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>The Proposal</h3>
+                            <p>Dir. Shrijal Thapa / Director of Photography (Coming Soon)</p>
+                            <span class="year">2025</span>
+                        </div>
+                    </div>
+
+                    <!-- Sonder (2023) -->
+                    <div class="portfolio-item" data-category="cinematographer">
+                        <div class="portfolio-media">
+                            <img src="photos/upcoming movies/sonder.jpg" alt="Sonder" class="portfolio-image">
+                            <div class="play-button" style="opacity: 0.5;">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>Sonder</h3>
+                            <p>Dir. Shrijal Thapa / Director of Photography (Coming Soon)</p>
+                            <span class="year">2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">About</h2>
+                    <p class="about-description">
+                        I am Nishit Thapa, a 22-year-old filmmaker from Kathmandu, Nepal, currently based in Hattiesburg, MS. A cinema lover since childhood, I love everything film - I love watching, discussing, reading, writing, and making films. Over the years, I have worked as a writer, director, editor, and cinematographer, bringing stories to life from the page to the screen. Personally, I find cinema to be the greatest artistic medium, and I cannot imagine doing anything other than making movies.
+                    </p>
+                    
+                    <!-- Skills -->
+                    <div class="skills">
+                        <h3>Expertise</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag" data-filter="director">Writing</span>
+                            <span class="skill-tag" data-filter="director">Directing</span>
+                            <span class="skill-tag" data-filter="cinematographer">Cinematography</span>
+                            <span class="skill-tag" data-filter="editor">Editing</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Links in About -->
+                    <div class="about-social">
+                        <a href="mailto:nishitthapa47@gmail.com" class="about-social-link" title="Email">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/nishit_thapa_/" target="_blank" class="about-social-link" title="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://letterboxd.com/nishitthapa/" target="_blank" class="about-social-link" title="Letterboxd">
+                            <svg width="24" height="24" viewBox="0 0 500 500" fill="currentColor">
+                                <circle cx="129" cy="251" r="109" fill="none" stroke="currentColor" stroke-width="18"/>
+                                <circle cx="251" cy="251" r="109" fill="none" stroke="currentColor" stroke-width="18"/>
+                                <circle cx="373" cy="251" r="109" fill="none" stroke="currentColor" stroke-width="18"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.goodreads.com/user/show/174489051-nishit" target="_blank" class="about-social-link" title="Goodreads">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <text x="12" y="16" font-family="serif" font-size="16" font-weight="bold" text-anchor="middle" fill="currentColor">g</text>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/nishit-thapa-97a884224/" target="_blank" class="about-social-link" title="LinkedIn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="photos/nishit.JPG" alt="Nishit Thapa - Filmmaker" loading="lazy">
+                </div>
+            </div>
+            
+            <!-- Behind the Scenes Section -->
+            <div class="behind-scenes">
+                <h3>Behind the Scenes</h3>
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-track">
+                            <!-- MGSKS Photos -->
+                            <div class="carousel-slide">
+                                <img src="photos/on set photos/mgsks/mgsks.JPEG" alt="MGSKS - Behind the Scenes" loading="lazy">
+                                <div class="slide-caption">MGSKS - On Set</div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/on set photos/mgsks/56e2167357260cf2ae6a45f3d014a72a.JPEG" alt="MGSKS - Behind the Scenes" loading="lazy">
+                                <div class="slide-caption">MGSKS - Production</div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/on set photos/mgsks/cbee626b8a7deca2f577547f62303989.JPEG" alt="MGSKS - Behind the Scenes" loading="lazy">
+                                <div class="slide-caption">MGSKS - Filming</div>
+                            </div>
+                            
+                            <!-- Rose of Winter Photos -->
+                            <div class="carousel-slide">
+                                <img src="photos/on set photos/rose of winter/IMG_4FCCC8AD8E7D-1.jpeg" alt="Rose of Winter - Behind the Scenes" loading="lazy">
+                                <div class="slide-caption">Rose of Winter - On Set</div>
+                            </div>
+                            
+                            <!-- Goldfish Photos -->
+                            <div class="carousel-slide">
+                                <img src="photos/on set photos/goldfish/1679608278163.jpeg" alt="Goldfish - Behind the Scenes" loading="lazy">
+                                <div class="slide-caption">Goldfish - Behind the Scenes</div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/on set photos/goldfish/1679608279311.jpeg" alt="Goldfish - Behind the Scenes" loading="lazy">
+                                <div class="slide-caption">Goldfish - Production</div>
+                            </div>
+                            
+                            <!-- Sonder Photos -->
+                            <div class="carousel-slide">
+                                <img src="photos/on set photos/sonder/488647749_1773683539865380_505057587057958703_n.jpg" alt="Sonder - Behind the Scenes" loading="lazy">
+                                <div class="slide-caption">Sonder - On Set</div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/on set photos/sonder/488656957_1773684846531916_8610869894841290800_n.jpg" alt="Sonder - Behind the Scenes" loading="lazy">
+                                <div class="slide-caption">Sonder - Behind the Scenes</div>
+                            </div>
+                            
+                            <!-- Behind the Scenes Videos -->
+                            <div class="carousel-slide">
+                                <video controls loading="lazy">
+                                    <source src="photos/on set photos/mgsks/FC75710D-EB6A-4624-9042-60EE30E728C0.MOV" type="video/quicktime">
+                                    <source src="photos/on set photos/mgsks/FC75710D-EB6A-4624-9042-60EE30E728C0.MOV" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <div class="slide-caption">MGSKS - Behind the Scenes Video</div>
+                            </div>
+                            <div class="carousel-slide">
+                                <video controls loading="lazy">
+                                    <source src="photos/on set photos/rose of winter/20221208T142557380.att.CAD4FCEE-4196-438D-96A5-137F55152918_0.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <div class="slide-caption">Rose of Winter - Behind the Scenes Video</div>
+                            </div>
+                            <div class="carousel-slide">
+                                <video controls loading="lazy">
+                                    <source src="photos/on set photos/rose of winter/20221208T073311147.att.C70077A7-221C-46E3-94F2-89A63D0CCE3C_0.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <div class="slide-caption">Rose of Winter - Production Video</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Carousel Controls -->
+                    <button class="carousel-btn carousel-btn-prev" aria-label="Previous image">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                        </svg>
+                    </button>
+                    <button class="carousel-btn carousel-btn-next" aria-label="Next image">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                        </svg>
+                    </button>
+                    
+                    <!-- Carousel Indicators -->
+                    <div class="carousel-indicators">
+                        <button class="indicator active" data-slide="0"></button>
+                        <button class="indicator" data-slide="1"></button>
+                        <button class="indicator" data-slide="2"></button>
+                        <button class="indicator" data-slide="3"></button>
+                        <button class="indicator" data-slide="4"></button>
+                        <button class="indicator" data-slide="5"></button>
+                        <button class="indicator" data-slide="6"></button>
+                        <button class="indicator" data-slide="7"></button>
+                        <button class="indicator" data-slide="8"></button>
+                        <button class="indicator" data-slide="9"></button>
+                        <button class="indicator" data-slide="10"></button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Nishit Thapa. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="video-container">
+                <iframe id="youtubeEmbed" 
+                        src="" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <div class="video-description">
+                <h3 id="videoTitle"></h3>
+                <div id="videoDescriptionText"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal for Carousel -->
+    <div class="image-modal" id="imageModal">
+        <div class="image-modal-content">
+            <span class="close-image-modal">&times;</span>
+            <img class="modal-image" id="modalImage" src="" alt="">
+            <div class="modal-caption" id="modalCaption"></div>
+            
+            <!-- Modal Navigation -->
+            <button class="modal-nav modal-prev" id="modalPrev">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </button>
+            <button class="modal-nav modal-next" id="modalNext">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
