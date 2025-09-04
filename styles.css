@@ -142,40 +142,40 @@ body {
     pointer-events: none;
 }
 
-/* Mobile responsive adjustments - smaller hero section, no cropping */
+/* Mobile responsive adjustments - full screen hero with centered video crop */
 @media screen and (max-width: 768px) {
     .hero {
-        height: 60vh; /* Smaller hero section on tablet */
+        height: 100vh; /* Full screen on tablet */
     }
     
     .hero-video-background {
-        height: 60vh;
+        height: 100vh;
     }
     
     .hero-video-background iframe {
-        width: 106.67vh; /* Perfect 16:9 for 60vh height */
-        height: 60vh;
-        min-height: 60vh;
-        min-width: 106.67vh;
-        transform: translate(-50%, -50%); /* No scaling */
+        width: 177.78vh; /* 16:9 aspect ratio for 100vh height */
+        height: 100vh;
+        min-height: 100vh;
+        min-width: 177.78vh;
+        transform: translate(-50%, -50%); /* Center the video, crop sides */
     }
 }
 
 @media screen and (max-width: 480px) {
     .hero {
-        height: 50vh; /* Compact on mobile phones */
+        height: 100vh; /* Full screen on mobile phones */
     }
     
     .hero-video-background {
-        height: 50vh;
+        height: 100vh;
     }
     
     .hero-video-background iframe {
-        width: 88.89vh; /* Perfect 16:9 for 50vh height */
-        height: 50vh;
-        min-height: 50vh;
-        min-width: 88.89vh;
-        transform: translate(-50%, -50%); /* No scaling - shows 100% of video */
+        width: 177.78vh; /* 16:9 aspect ratio for 100vh height */
+        height: 100vh;
+        min-height: 100vh;
+        min-width: 177.78vh;
+        transform: translate(-50%, -50%); /* Center the video, crop sides for mobile */
     }
 }
 
@@ -240,6 +240,19 @@ body {
 .work-section {
     padding: 100px 0;
     background: #111;
+}
+
+/* Reduce excessive padding on mobile */
+@media screen and (max-width: 768px) {
+    .work-section {
+        padding: 60px 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .work-section {
+        padding: 40px 0;
+    }
 }
 
 .filter-buttons {
@@ -359,6 +372,19 @@ body {
 .about-section {
     padding: 100px 0;
     background: #000;
+}
+
+/* Reduce excessive padding on mobile */
+@media screen and (max-width: 768px) {
+    .about-section {
+        padding: 60px 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .about-section {
+        padding: 40px 0;
+    }
 }
 
 .about-content {
@@ -491,12 +517,28 @@ body {
     width: 100%;
     height: 500px;
     overflow: hidden;
+    touch-action: pan-y pinch-zoom;
+    will-change: transform;
 }
 
 .carousel-track {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     height: 100%;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+.carousel-track:active {
+    cursor: grabbing;
+    transition: transform 0.1s ease-out;
 }
 
 .carousel-slide {
@@ -511,6 +553,8 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    cursor: pointer;
+    pointer-events: auto;
 }
 
 .carousel-slide video {
@@ -518,6 +562,8 @@ body {
     height: 100%;
     object-fit: contain;
     background: #000;
+    cursor: pointer;
+    pointer-events: auto;
 }
 
 .slide-caption {
@@ -738,15 +784,23 @@ body {
     overflow-y: auto;
 }
 
+.video-modal.show {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
 .modal-content {
     position: relative;
-    margin: 3% auto;
-    width: 90%;
+    margin: 0 auto;
+    width: 80%;
     max-width: 900px;
     background: #1a1a1a;
     border-radius: 12px;
     padding: 0;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .close-modal {
@@ -789,6 +843,8 @@ body {
     color: #fff;
     background: #1a1a1a;
     border-radius: 0 0 12px 12px;
+    max-height: 40vh;
+    overflow-y: auto;
 }
 
 .video-description h3 {
@@ -841,6 +897,12 @@ body {
     object-fit: contain;
     border-radius: 8px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    cursor: grab;
+    transition: cursor 0.2s ease;
+}
+
+.modal-image:active {
+    cursor: grabbing;
 }
 
 .close-image-modal {
@@ -853,10 +915,19 @@ body {
     cursor: pointer;
     z-index: 3001;
     transition: color 0.3s ease;
+    background: rgba(0, 0, 0, 0.5);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
 }
 
 .close-image-modal:hover {
     color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.2);
 }
 
 .modal-caption {
@@ -909,6 +980,8 @@ body {
 .modal-next {
     right: 30px;
 }
+
+
 
 /* Animations */
 @keyframes fadeInUp {
@@ -978,6 +1051,7 @@ body {
 
     .section-title {
         font-size: 2rem;
+        margin-bottom: 2rem;
     }
 
     .portfolio-grid {
@@ -988,6 +1062,33 @@ body {
     .contact-content {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+    
+    /* Reorder about section for mobile: description -> photo -> socials -> expertise */
+    .about-content {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .about-text {
+        order: 1;
+    }
+    
+    .about-image {
+        order: 2;
+        margin: 2rem 0;
+    }
+    
+    .about-social {
+        position: static;
+        order: 3;
+        margin: 2rem 0;
+        justify-content: center;
+    }
+    
+    .skills {
+        order: 4;
+        margin: 2rem 0;
     }
     
     .carousel {
@@ -1053,6 +1154,7 @@ body {
 
     .portfolio-grid {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
     }
 }
 
@@ -1082,6 +1184,24 @@ body {
         position: static;
         margin-top: 2rem;
         justify-content: center;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .about-description {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .skills {
+        margin: 1.5rem 0;
+    }
+    
+    .about-image {
+        margin: 1.5rem 0;
     }
 }
 
@@ -1152,3 +1272,180 @@ video {
         background: #000;
     }
 }
+
+/* Mobile-specific carousel improvements */
+@media screen and (max-width: 768px) {
+    .carousel-container {
+        max-width: 100%;
+        margin: 0 10px;
+    }
+    
+    .carousel {
+        height: 300px;
+        touch-action: pan-y pinch-zoom;
+    }
+    
+    .carousel-track {
+        cursor: grab;
+    }
+    
+    .carousel-track:active {
+        cursor: grabbing;
+    }
+    
+    .carousel-btn {
+        width: 44px;
+        height: 44px;
+        opacity: 0.8;
+    }
+    
+    .carousel-btn-prev {
+        left: 10px;
+    }
+    
+    .carousel-btn-next {
+        right: 10px;
+    }
+    
+    .carousel-indicators {
+        bottom: 15px;
+        gap: 6px;
+    }
+    
+    .indicator {
+        width: 10px;
+        height: 10px;
+        border-width: 1px;
+    }
+    
+    /* Video modal mobile improvements */
+    .modal-content {
+        margin: 2% auto;
+        width: 70%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+
+    
+    .close-modal {
+        top: 15px;
+        right: 15px;
+        width: 36px;
+        height: 36px;
+        font-size: 24px;
+    }
+    
+    .video-description {
+        padding: 1.5rem;
+        max-height: 40vh;
+        overflow-y: auto;
+    }
+    
+    .video-description h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .video-description div {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    /* Touch-friendly spacing */
+    .carousel-slide {
+        padding: 0 5px;
+    }
+    
+    .slide-caption {
+        padding: 1.5rem 1rem 1rem;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .carousel {
+        height: 250px;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .carousel-btn-prev {
+        left: 5px;
+    }
+    
+    .carousel-btn-next {
+        right: 5px;
+    }
+    
+    .modal-content {
+        margin: 0 auto;
+        width: 80%;
+    }
+    
+
+    
+    .close-modal {
+        top: 10px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+    }
+    
+    .video-description {
+        padding: 1rem;
+        max-height: 35vh;
+    }
+    
+    .video-description h3 {
+        font-size: 1.2rem;
+    }
+    
+    .video-description div {
+        font-size: 0.85rem;
+    }
+}
+
+/* Additional mobile optimizations */
+@media screen and (max-width: 768px) {
+
+    
+    /* Improve carousel touch targets */
+    .carousel-btn {
+        min-width: 44px;
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+    
+    /* Better spacing for mobile */
+    .carousel-container {
+        margin: 0 15px;
+    }
+    
+    /* Improve video modal scrolling */
+    .video-modal.show {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .modal-content {
+        margin: 0 auto;
+        width: 80%;
+        max-height: 95vh;
+    }
+    
+    /* Make description scrollable on mobile */
+    .video-description {
+        max-height: 30vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 1rem;
+    }
+}
+
+

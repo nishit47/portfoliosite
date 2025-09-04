@@ -237,6 +237,7 @@ function initVideoModal() {
         videoDescriptionText.innerHTML = data.description;
         
         modal.style.display = 'block';
+        modal.classList.add('show');
         document.body.style.overflow = 'hidden';
     }
 
@@ -246,11 +247,13 @@ function initVideoModal() {
         videoDescriptionText.innerHTML = data.description;
         
         modal.style.display = 'block';
+        modal.classList.add('show');
         document.body.style.overflow = 'hidden';
     }
 
     function closeVideoModal() {
         modal.style.display = 'none';
+        modal.classList.remove('show');
         youtubeEmbed.src = '';
         document.body.style.overflow = 'auto';
     }
@@ -516,8 +519,9 @@ function initCarousel() {
     const totalSlides = slides.length;
     
     function updateCarousel() {
-        // Move track
+        // Move track with smooth animation
         const translateX = -currentSlide * 100;
+        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         track.style.transform = `translateX(${translateX}%)`;
         
         // Update indicators
@@ -559,31 +563,185 @@ function initCarousel() {
     // Auto-play (optional - uncomment if you want auto-play)
     // setInterval(nextSlide, 5000);
     
-    // Touch/swipe support for mobile
+    // Enhanced touch/swipe support for mobile that works with image clicks
     let touchStartX = 0;
+    let touchStartY = 0;
     let touchEndX = 0;
+    let touchEndY = 0;
+    let isDragging = false;
+    let startTranslateX = 0;
+    let currentTranslateX = 0;
+    let touchStartTime = 0;
+    let isSwipe = false;
+    let animationFrameId = null;
     
+    // Touch start - detect if this might be a swipe
     track.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-    
-    track.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    });
-    
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        touchStartTime = Date.now();
+        isDragging = true;
+        isSwipe = false;
         
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                nextSlide(); // Swipe left - go to next
-            } else {
-                prevSlide(); // Swipe right - go to previous
-            }
+        // Cancel any ongoing animations
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
         }
-    }
+        
+        // Get current transform
+        const transform = window.getComputedStyle(track).transform;
+        if (transform !== 'none') {
+            const matrix = new DOMMatrix(transform);
+            startTranslateX = matrix.m41;
+        }
+        
+        // Remove transition for immediate response
+        track.style.transition = 'none';
+    });
+    
+    // Touch move - track movement to determine if it's a swipe
+    track.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        
+        touchEndX = e.touches[0].clientX;
+        touchEndY = e.touches[0].clientY;
+        
+        const diffX = touchEndX - touchStartX;
+        const diffY = touchEndY - touchStartY;
+        
+        // If horizontal movement is significant, treat as swipe
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
+            isSwipe = true;
+            currentTranslateX = startTranslateX + diffX;
+            
+            // Use requestAnimationFrame for smooth 60fps updates
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+            animationFrameId = requestAnimationFrame(() => {
+                track.style.transform = `translateX(${currentTranslateX}px)`;
+            });
+            
+            e.preventDefault(); // Prevent page scrolling during swipe
+        }
+    }, { passive: false });
+    
+    // Touch end - handle both swipe and click
+    track.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        
+        // Cancel any pending animation frame
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+        }
+        
+        const diffX = touchEndX - touchStartX;
+        const diffY = touchEndY - touchStartY;
+        const touchDuration = Date.now() - touchStartTime;
+        
+        // Determine if this was a swipe or a tap
+        if (isSwipe && Math.abs(diffX) > 50) {
+            // This was a swipe - navigate carousel with smooth animation
+            if (diffX > 0) {
+                prevSlide(); // Swipe right - go to previous
+            } else {
+                nextSlide(); // Swipe left - go to next
+            }
+        } else if (Math.abs(diffX) < 10 && Math.abs(diffY) < 10 && touchDuration < 300) {
+            // This was a tap - let the image click event handle it
+            // Don't prevent default, let the image modal open
+        } else {
+            // Return to current slide if movement wasn't clear
+            updateCarousel();
+        }
+    });
+    
+    // Mouse drag support for desktop
+    let isMouseDown = false;
+    let mouseStartX = 0;
+    let mouseStartTranslateX = 0;
+    let mouseStartTime = 0;
+    let isMouseSwipe = false;
+    let mouseAnimationFrameId = null;
+    
+    track.addEventListener('mousedown', (e) => {
+        isMouseDown = true;
+        mouseStartX = e.clientX;
+        mouseStartTime = Date.now();
+        isMouseSwipe = false;
+        
+        // Cancel any ongoing animations
+        if (mouseAnimationFrameId) {
+            cancelAnimationFrame(mouseAnimationFrameId);
+        }
+        
+        const transform = window.getComputedStyle(track).transform;
+        if (transform !== 'none') {
+            const matrix = new DOMMatrix(transform);
+            mouseStartTranslateX = matrix.m41;
+        }
+        
+        track.style.cursor = 'grabbing';
+        track.style.transition = 'none';
+    });
+    
+    track.addEventListener('mousemove', (e) => {
+        if (!isMouseDown) return;
+        
+        const diffX = e.clientX - mouseStartX;
+        if (Math.abs(diffX) > 10) {
+            isMouseSwipe = true;
+            currentTranslateX = mouseStartTranslateX + diffX;
+            
+            // Use requestAnimationFrame for smooth 60fps updates
+            if (mouseAnimationFrameId) {
+                cancelAnimationFrame(mouseAnimationFrameId);
+            }
+            mouseAnimationFrameId = requestAnimationFrame(() => {
+                track.style.transform = `translateX(${currentTranslateX}px)`;
+            });
+        }
+    });
+    
+    track.addEventListener('mouseup', (e) => {
+        if (!isMouseDown) return;
+        
+        isMouseDown = false;
+        track.style.cursor = 'grab';
+        
+        // Cancel any pending animation frame
+        if (mouseAnimationFrameId) {
+            cancelAnimationFrame(mouseAnimationFrameId);
+            mouseAnimationFrameId = null;
+        }
+        
+        const diffX = e.clientX - mouseStartX;
+        const mouseDuration = Date.now() - mouseStartTime;
+        
+        if (isMouseSwipe && Math.abs(diffX) > 50) {
+            // This was a drag - navigate carousel with smooth animation
+            if (diffX > 0) {
+                prevSlide();
+            } else {
+                nextSlide();
+            }
+        } else if (Math.abs(diffX) < 10 && mouseDuration < 300) {
+            // This was a click - let the image click event handle it
+        } else {
+            // Return to current slide
+            updateCarousel();
+        }
+    });
+    
+    // Prevent context menu on long press (only on track background)
+    track.addEventListener('contextmenu', (e) => {
+        if (e.target.tagName !== 'IMG' && e.target.tagName !== 'VIDEO') {
+            e.preventDefault();
+        }
+    });
 }
 
 // Image Modal functionality
@@ -618,11 +776,19 @@ function initImageModal() {
         
         imageModal.style.display = 'block';
         document.body.style.overflow = 'hidden';
+        
+
+        
+        // Initialize modal swipe functionality
+        initModalSwipe();
     }
     
     function closeModal() {
         imageModal.style.display = 'none';
         document.body.style.overflow = 'auto';
+        
+        // Remove modal swipe functionality
+        removeModalSwipe();
     }
     
     function showPrevImage() {
@@ -633,6 +799,112 @@ function initImageModal() {
     function showNextImage() {
         currentModalIndex = (currentModalIndex + 1) % images.length;
         openImageModal(currentModalIndex);
+    }
+    
+    // Modal swipe functionality
+    let modalTouchStartX = 0;
+    let modalTouchStartY = 0;
+    let modalTouchEndX = 0;
+    let modalTouchEndY = 0;
+    let isModalDragging = false;
+    
+    function initModalSwipe() {
+        // Touch start
+        imageModal.addEventListener('touchstart', handleModalTouchStart, { passive: false });
+        imageModal.addEventListener('touchmove', handleModalTouchMove, { passive: false });
+        imageModal.addEventListener('touchend', handleModalTouchEnd, { passive: false });
+        
+        // Mouse events for desktop
+        imageModal.addEventListener('mousedown', handleModalMouseDown);
+        imageModal.addEventListener('mousemove', handleModalMouseMove);
+        imageModal.addEventListener('mouseup', handleModalMouseUp);
+    }
+    
+    function removeModalSwipe() {
+        imageModal.removeEventListener('touchstart', handleModalTouchStart);
+        imageModal.removeEventListener('touchmove', handleModalTouchMove);
+        imageModal.removeEventListener('touchend', handleModalTouchEnd);
+        
+        imageModal.removeEventListener('mousedown', handleModalMouseDown);
+        imageModal.removeEventListener('mousemove', handleModalMouseMove);
+        imageModal.removeEventListener('mouseup', handleModalMouseUp);
+    }
+    
+    function handleModalTouchStart(e) {
+        modalTouchStartX = e.touches[0].clientX;
+        modalTouchStartY = e.touches[0].clientY;
+        isModalDragging = true;
+    }
+    
+    function handleModalTouchMove(e) {
+        if (!isModalDragging) return;
+        
+        modalTouchEndX = e.touches[0].clientX;
+        modalTouchEndY = e.touches[0].clientY;
+        
+        const diffX = modalTouchEndX - modalTouchStartX;
+        const diffY = modalTouchEndY - modalTouchStartY;
+        
+        // Only handle horizontal swipes (ignore vertical scrolling)
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+            e.preventDefault(); // Prevent page scrolling during horizontal swipe
+        }
+    }
+    
+    function handleModalTouchEnd(e) {
+        if (!isModalDragging) return;
+        
+        isModalDragging = false;
+        
+        const diffX = modalTouchEndX - modalTouchStartX;
+        const diffY = modalTouchEndY - modalTouchStartY;
+        const swipeThreshold = 50;
+        
+        // Only handle horizontal swipes
+        if (Math.abs(diffX) > swipeThreshold && Math.abs(diffX) > Math.abs(diffY)) {
+            if (diffX > 0) {
+                showPrevImage(); // Swipe right - go to previous
+            } else {
+                showNextImage(); // Swipe left - go to next
+            }
+        }
+    }
+    
+    // Mouse events for desktop modal navigation
+    let isModalMouseDown = false;
+    let modalMouseStartX = 0;
+    
+    function handleModalMouseDown(e) {
+        isModalMouseDown = true;
+        modalMouseStartX = e.clientX;
+    }
+    
+    function handleModalMouseMove(e) {
+        if (!isModalMouseDown) return;
+        
+        const diffX = e.clientX - modalMouseStartX;
+        if (Math.abs(diffX) > 10) {
+            // Show visual feedback that dragging is happening
+            imageModal.style.cursor = 'grabbing';
+        }
+    }
+    
+    function handleModalMouseUp(e) {
+        if (!isModalMouseDown) return;
+        
+        isModalMouseDown = false;
+        imageModal.style.cursor = 'default';
+        
+        const diffX = e.clientX - modalMouseStartX;
+        const dragThreshold = 50;
+        
+        if (Math.abs(diffX) > dragThreshold) {
+            if (diffX > 0) {
+                showPrevImage(); // Drag right - go to previous
+            } else {
+                showNextImage(); // Drag left - go to next
+            }
+        }
     }
     
     // Event listeners
