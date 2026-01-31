@@ -125,6 +125,13 @@ function initVideoModal() {
                          <p>A music video that explores the dual nature, the pressure and pleasures of being an artist.</p>
                          <p><strong>Production:</strong> Anindra Studios</p>`
         },
+        'pWiqjFaKuK8': {
+            title: 'The Bus To Bagbazar',
+            description: `<p><strong>Role:</strong> Writer, Director, Editor, Cinematographer</p>
+                         <p>A man's ideals are tested when he falls in love with a girl out of his league.</p>
+                         <p><strong>Production:</strong> Anindra Studios</p>
+                         <p><em>Coming Soon</em></p>`
+        },
         '8yBXVpLGZjQ': {
             title: 'MGSKS',
             description: `<p><strong>Role:</strong> Writer, Director, Editor, Cinematographer</p>
